@@ -29,7 +29,7 @@ def warmer(flag='warmer', concurrency='concurrency', delay=75, send_metric=False
         def wrapped_func(event, context, *args, **kwargs):
 
             execution_info = dict(
-                instance_id=context.aws_request_id,
+                instance_id=context.get('aws_request_id'),
                 is_warmer_invocation=event.get(flag) or False,
                 **LAMBDA_INFO
             )
